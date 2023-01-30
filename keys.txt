@@ -1,0 +1,3 @@
+ftp password: Surehelpftppassword123098
+mysql_db password: /L0Lzw]u0O
+mysql_db user:u148451068_surehelp
