@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::group(['middleware'=>"auth",'prefix'=>"dashboard"], function(){
+
+    Route::get('/', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::get("/account/create",[AdminController::class,"createUserAccount_page"]);
+    Route::post("/account/create",[AdminController::class,"createUserAccount"]);
+    Route::get("/account/list",[AdminController::class,"listAccounts"]);
+    Route::get("/account/edit/{id}",[AdminController::class,"editAccount_page"]);
+    Route::post("/account/edit/",[AdminController::class,"editUserAccount"]);
+    Route::post("/account/delete/{id}",[AdminController::class,"deleAccount"]);
+
+
+
+});
+
+
 
 require __DIR__.'/auth.php';
