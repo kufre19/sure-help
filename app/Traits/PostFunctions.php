@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Models\UsersMainApp;
 use App\Models\UsersMainPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +48,12 @@ trait PostFunctions {
 
         $posts = UsersMainPost::fetch_rejected_post();
         return view("post_request.rejected",compact("posts"));
+    }
+
+    public function fetch_user_by_post( $uuid)
+    {
+        $user = UsersMainApp::fetch_user_by_uuid($uuid);
+        return response()->json(["imageSrc"=>$user->profile_photo,"name"=>$user->fullname,"email"=>$user->email],200);
     }
 
 }

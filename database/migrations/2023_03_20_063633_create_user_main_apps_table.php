@@ -13,7 +13,7 @@ class CreateUserMainAppsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_main_apps', function (Blueprint $table) {
+        Schema::create('users_main_apps', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });

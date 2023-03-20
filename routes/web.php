@@ -39,6 +39,7 @@ Route::group(['middleware'=>"auth",'prefix'=>"dashboard"], function(){
     // POSTS REQUEST
     Route::post("/post/action/update",[AdminController::class,"post_action"]);
     Route::get("/request/view/approved",[AdminController::class,"view_approved_post"]);
+    Route::get("/request/view/user/{uuid}",[AdminController::class,"fetch_user_by_post"]);
     Route::get("/request/view/rejected",[AdminController::class,"view_rejected_post"]);
 
 
