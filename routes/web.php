@@ -20,9 +20,7 @@ Route::get('/', function () {
 
 Route::group(['middleware'=>"auth",'prefix'=>"dashboard"], function(){
 
-    Route::get('/', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/',[AdminController::class,"index"])->name('dashboard');
 
     // account
     Route::get("/account/create",[AdminController::class,"createUserAccount_page"]);
@@ -37,6 +35,12 @@ Route::group(['middleware'=>"auth",'prefix'=>"dashboard"], function(){
     Route::post("/partners/broadcast-message",[AdminController::class,"broadcastmessage_send"]);
     Route::get("/partners/list-partners",[AdminController::class,"list_partners_page"]);
     Route::get("/partners/view/{id}",[AdminController::class,"view_partner_page"]);
+
+    // POSTS REQUEST
+    Route::post("/post/action/update",[AdminController::class,"post_action"]);
+    Route::get("/request/view/approved",[AdminController::class,"view_approved_post"]);
+    Route::get("/request/view/rejected",[AdminController::class,"view_rejected_post"]);
+
 
 
 });

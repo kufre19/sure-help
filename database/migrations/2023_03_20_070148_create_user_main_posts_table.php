@@ -13,7 +13,7 @@ class CreateUserMainPostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_main_posts', function (Blueprint $table) {
+        Schema::create('users_main_posts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });

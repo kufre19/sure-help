@@ -39,9 +39,9 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Request section:</h6>
-                <a class="collapse-item" href="#">New</a>
-                <a class="collapse-item" href="#">Approved</a>
-                <a class="collapse-item" href="#">Rejected</a>
+                <a class="collapse-item" href="{{url("/dashboard")}}">New</a>
+                <a class="collapse-item" href="{{url("/dashboard/request/view/approved")}}">Approved</a>
+                <a class="collapse-item" href="{{url("/dashboard/request/view/rejected")}}">Rejected</a>
             </div>
         </div>
     </li>
