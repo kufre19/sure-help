@@ -67,14 +67,14 @@
      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
             aria-expanded="true" aria-controls="collapseFour">
-            <i class="fas fa-fw fa-user"></i>
+            <i class="fas fa-fw fa-handshake"></i>
             <span>Partnership Portal</span>
         </a>
         <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Partnership section:</h6>
-                <a class="collapse-item" href="{{url('/dashboard/account/create')}}">Broadcast Messahe</a>
-                <a class="collapse-item" href="{{url('/dashboard/account/list')}}">Partners</a>
+                <a class="collapse-item" href="{{url('/dashboard/partners/broadcast-message')}}">Broadcast Message</a>
+                <a class="collapse-item" href="{{url('/dashboard/partners/list-partners')}}">Partners</a>
                 {{-- <a class="collapse-item" href="#">Rejected</a> --}}
             </div>
         </div>

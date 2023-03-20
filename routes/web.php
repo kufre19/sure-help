@@ -24,6 +24,7 @@ Route::group(['middleware'=>"auth",'prefix'=>"dashboard"], function(){
         return view('dashboard');
     })->name('dashboard');
 
+    // account
     Route::get("/account/create",[AdminController::class,"createUserAccount_page"]);
     Route::post("/account/create",[AdminController::class,"createUserAccount"]);
     Route::get("/account/list",[AdminController::class,"listAccounts"]);
@@ -31,6 +32,11 @@ Route::group(['middleware'=>"auth",'prefix'=>"dashboard"], function(){
     Route::post("/account/edit/",[AdminController::class,"editUserAccount"]);
     Route::post("/account/delete/{id}",[AdminController::class,"deleAccount"]);
 
+    // partnership
+    Route::get("/partners/broadcast-message",[AdminController::class,"broadcastmessage_page"]);
+    Route::post("/partners/broadcast-message",[AdminController::class,"broadcastmessage_send"]);
+    Route::get("/partners/list-partners",[AdminController::class,"list_partners_page"]);
+    Route::get("/partners/view/{id}",[AdminController::class,"view_partner_page"]);
 
 
 });

@@ -63,6 +63,7 @@
    
 
     @include('layouts.custom.js_scripts')
+    @yield('extraJS')
 
 </body>
 
