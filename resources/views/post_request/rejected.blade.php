@@ -1,4 +1,16 @@
 @extends('layouts.custom.app')
+@section('extraCss')
+    <style>
+        .user-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+@endsection
 
 @section('page_content')
     <!-- Begin Page Content -->
@@ -29,13 +41,13 @@
                             <p>Admin Comment: {{ $post->admin_comment }}</p>
                             
                         </div>
-                        {{-- <div class="card-footer">
-                            <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal"
+                        <div class="card-footer">
+                            {{-- <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal"
                                 data-type="approved" data-post-id="{{$post->id}}">Approve</button>
                             <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"
-                                data-type="rejected" data-post-id="{{$post->id}}">Reject</button>
-                            <button class="btn btn-primary">Info</button>
-                        </div> --}}
+                                data-type="rejected" data-post-id="{{$post->id}}">Reject</button> --}}
+                            <button class="btn btn-primary fetch-user" data-user-id="{{ $post->uuid }}">Posted By</button>
+                        </div>
                     </div>
                 </div>
             @endforeach
@@ -51,6 +63,32 @@
             <p> {{ $posts->links() }}</p>
         </div>
 
+        <div class="modal userModal " id="userModalid" tabindex="-1" role="dialog" aria-labelledby="userModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userModalLabel">User Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body">
+                        <div class="user-image"></div>
+                        <div class="user-details"></div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="closeUserModal" type="button" class="btn btn-secondary">Close</button>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
 
 
 
@@ -59,5 +97,33 @@
 
 
 @section('extraJS')
-   
+<script>
+    $(document).ready(function() {
+        // Event listener for fetch user button
+        $('.fetch-user').click(function() {
+            var userId = $(this).data('user-id');
+
+            // AJAX request to fetch user data
+            $.ajax({
+                type: 'GET',
+                url: "{{ url('dashboard/request/view/user') }}" + "/" + userId,
+                success: function(user) {
+                    // Show user data in modal popup
+                    $('.user-image').css('background-image', 'url(' + user.imageSrc + ')');
+                    $('.user-details').html(user.name + '<br>' + user.email);
+                    $('.userModal').css('display', 'block');
+                },
+                error: function() {
+                    alert('Error fetching user data');
+                }
+            });
+        });
+
+
+    });
+    $('#closeUserModal').click(function() {
+
+        $('#userModalid').css('display', 'none');
+    });
+</script>
 @endsection
