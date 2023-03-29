@@ -53,7 +53,12 @@ trait PostFunctions {
     public function fetch_user_by_post( $uuid)
     {
         $user = UsersMainApp::fetch_user_by_uuid($uuid);
-        return response()->json(["imageSrc"=>$user->profile_photo,"name"=>$user->fullname,"email"=>$user->email],200);
+        $data = [
+        "imageSrc"=>$user->profile_photo,"name"=>$user->fullname,
+        "email"=>$user->email,"phone"=>$user->phone,"address"=>$user->address,
+        "country"=>$user->country
+    ];
+        return response()->json($data,200);
     }
 
 }

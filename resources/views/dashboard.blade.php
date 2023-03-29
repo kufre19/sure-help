@@ -150,7 +150,9 @@
                     success: function(user) {
                         // Show user data in modal popup
                         $('.user-image').css('background-image', 'url(' + user.imageSrc + ')');
-                        $('.user-details').html(user.name + '<br>' + user.email);
+                        var details_loaded = "Name:" + user.name + '<br>' + "Email:" + user.email+'<br>' + 
+                        "Phone"+user.phone+'<br>'+ "Address:" + user.address +'<br>'+ "Country:" + user.country
+                        $('.user-details').html(details_loaded);
                         $('.userModal').css('display', 'block');
                     },
                     error: function() {
