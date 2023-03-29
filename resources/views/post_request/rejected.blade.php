@@ -33,7 +33,7 @@
                         <div class="card-body">
                             <div class="embed-responsive embed-responsive-16by9">
                                 <iframe class="embed-responsive-item" src="{{ $post->post_video }}"
-                                    allow="autoplay; encrypted-media" allowfullscreen="allowfullscreen" frameborder="0"
+                                    allowfullscreen="allowfullscreen" frameborder="0"
                                     autoplay="0" controls></iframe>
                             </div>
                             <p>{{ $post->post_description }}</p>
