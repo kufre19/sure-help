@@ -2,13 +2,12 @@ version: "3.1"
 services:
   app:
     image: surehelp
-    container_name: surehelp_php\
+    container_name: surehelp_php
     build: 
       context: .
       dockerfile: .
     restart: "no"
     ports:
-      - 80:80
       - 8000:8000
     volumes:
       - ./:/var/www/html
@@ -22,12 +21,13 @@ services:
 
   db:
     image: mysql:latest
+    container_name: mysql_db_surehelp
     restart: "no"
     environment:
       MYSQL_ROOT_PASSWORD: admin
     volumes:
-      - db-data:/docker-entrypoint-initdb.d
-      - db-data:/var/lib/mysql
+      - db-data_surehelp:/docker-entrypoint-initdb.d
+      - db-data_surehelp:/var/lib/mysql
     networks:
       - surehelp
    
@@ -50,5 +50,5 @@ networks:
 
 
 volumes:
-  db-data:
+  db-data_surehelp:
   
