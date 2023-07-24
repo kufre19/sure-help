@@ -18,29 +18,37 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware'=>"auth",'prefix'=>"dashboard"], function(){
+Route::group(['middleware' => "auth", 'prefix' => "dashboard"], function () {
 
-    Route::get('/',[AdminController::class,"index"])->name('dashboard');
+    Route::get('/', [AdminController::class, "index"])->name('dashboard');
 
     // account
-    Route::get("/account/create",[AdminController::class,"createUserAccount_page"]);
-    Route::post("/account/create",[AdminController::class,"createUserAccount"]);
-    Route::get("/account/list",[AdminController::class,"listAccounts"]);
-    Route::get("/account/edit/{id}",[AdminController::class,"editAccount_page"]);
-    Route::post("/account/edit/",[AdminController::class,"editUserAccount"]);
-    Route::post("/account/delete/{id}",[AdminController::class,"deleAccount"]);
+    Route::get("/account/create", [AdminController::class, "createUserAccount_page"]);
+    Route::post("/account/create", [AdminController::class, "createUserAccount"]);
+    Route::get("/account/list", [AdminController::class, "listAccounts"]);
+    Route::get("/account/edit/{id}", [AdminController::class, "editAccount_page"]);
+    Route::post("/account/edit/", [AdminController::class, "editUserAccount"]);
+    Route::post("/account/delete/{id}", [AdminController::class, "deleAccount"]);
 
     // partnership
-    Route::get("/partners/broadcast-message",[AdminController::class,"broadcastmessage_page"]);
-    Route::post("/partners/broadcast-message",[AdminController::class,"broadcastmessage_send"]);
-    Route::get("/partners/list-partners",[AdminController::class,"list_partners_page"]);
-    Route::get("/partners/view/{id}",[AdminController::class,"view_partner_page"]);
+    Route::get("/partners/broadcast-message", [AdminController::class, "broadcastmessage_page"]);
+    Route::post("/partners/broadcast-message", [AdminController::class, "broadcastmessage_send"]);
+    Route::get("/partners/list-partners", [AdminController::class, "list_partners_page"]);
+    Route::get("/partners/view/{id}", [AdminController::class, "view_partner_page"]);
 
     // POSTS REQUEST
-    Route::post("/post/action/update",[AdminController::class,"post_action"]);
-    Route::get("/request/view/approved",[AdminController::class,"view_approved_post"]);
-    Route::get("/request/view/user/{uuid}",[AdminController::class,"fetch_user_by_post"]);
-    Route::get("/request/view/rejected",[AdminController::class,"view_rejected_post"]);
+    Route::post("/post/action/update", [AdminController::class, "post_action"]);
+    Route::get("/request/view/approved", [AdminController::class, "view_approved_post"]);
+    Route::get("/request/view/user/{uuid}", [AdminController::class, "fetch_user_by_post"]);
+    Route::get("/request/view/rejected", [AdminController::class, "view_rejected_post"]);
+
+    // FREE SHOP
+    Route::get("/shop/manage", [AdminController::class, "freeshop_page"])->name("shop_items");
+    Route::get("/shop/wishlist", [AdminController::class, "freeshop_wishlist_page"]);
+    Route::get("/shop/item/add", [AdminController::class, "add_item_page"]);
+    Route::post("/shop/item/add", [AdminController::class, "add_item"]);
+    Route::get("/shop/item/manage/", [AdminController::class, "manage_item"]);
+
 
 
 
@@ -48,4 +56,4 @@ Route::group(['middleware'=>"auth",'prefix'=>"dashboard"], function(){
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
