@@ -2,7 +2,7 @@ version: "3.1"
 services:
   app:
     image: surehelp
-    container_name: surehelp_php
+    container_name: surehelp_php\
     build: 
       context: .
       dockerfile: .

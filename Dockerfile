@@ -13,5 +13,6 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 
 COPY . /var/www/html
+RUN umask 000
 
 USER 1000:1000
