@@ -49,6 +49,12 @@ Route::group(['middleware' => "auth", 'prefix' => "dashboard"], function () {
     Route::post("/shop/item/add", [AdminController::class, "add_item"]);
     Route::get("/shop/item/manage/", [AdminController::class, "manage_item"]);
 
+    // TESTIMONIALS
+    Route::get("/testimonials/all", [AdminController::class, "testimonial_page"])->name("testimonial.index");
+    Route::get("/testimonials/delete/{id}", [AdminController::class, "delete_testimonial"])->name("testimonial.delete");
+
+
+
 
 
 

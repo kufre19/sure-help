@@ -31,7 +31,7 @@
 
                         <div class="card-body">
                             <div class="embed-responsive embed-responsive-16by9">
-                                <img src="{{ $item->item_image }}" alt="">
+                                <img src="{{ $item->item_image }}" width="100%" height="100%" alt="">
                             </div>
                             <p>Name: {{ $item->item_name }}</p>
                             <p>Category: {{ $item->item_category }}</p>

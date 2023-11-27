@@ -7,11 +7,12 @@ use App\Traits\AdminFunctions;
 use App\Traits\FreeShopFunction;
 use App\Traits\Partnership;
 use App\Traits\PostFunctions;
+use App\Traits\TestimonialFunction;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    use AdminFunctions, Partnership, PostFunctions, FreeShopFunction;
+    use AdminFunctions, Partnership, PostFunctions, FreeShopFunction, TestimonialFunction;
     public function __construct()
     {
         $this->middleware('auth');
