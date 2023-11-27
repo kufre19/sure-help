@@ -28,15 +28,15 @@ trait TestimonialFunction {
             $imageName = time() . '_' . $image->getClientOriginalName();
 
             // Target directory outside of Laravel app directory
-            $targetDir = $_SERVER['DOCUMENT_ROOT'] . '/development/main/testimonies/';
+            $targetDir =  public_path("uploads/images/testimonies");
             $image->move($targetDir, $imageName);
-            $imagePath = "https://development.surehelp.org/main/testimonies/" . $imageName;
+            $imagePath = "https://backoffice.surehelp.org/uploads/images/testimonies/" . $imageName;
 
         }
         $testimonial_model = new UserMainTestimonial();
         $testimonial_model->written_by = $request->input("written_by");
         $testimonial_model->shortdesc = $request->input("shortdesc");
-        $testimonial_model->imageurl = $imagePath ?? "";
+        $testimonial_model->imageurl = $imagePath;
         $testimonial_model->fulldesc_url = "";
 
         $testimonial_model->save();
