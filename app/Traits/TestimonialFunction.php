@@ -24,7 +24,6 @@ trait TestimonialFunction {
 
          // Handle file upload
          if ($request->hasFile('imageurl')) {
-            dd("ok");
             $image = $request->file('imageurl');
             $imageName = time() . '_' . $image->getClientOriginalName();
 

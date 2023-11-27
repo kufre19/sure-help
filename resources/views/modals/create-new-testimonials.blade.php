@@ -18,7 +18,7 @@
             </div>
             <div class="form-group">
               <label for="exampleTextArea">Testimonial</label>
-              <textarea class="form-control" name="description" id="exampleTextArea" rows="3" placeholder="Enter short Testiomial"></textarea>
+              <textarea class="form-control" name="shortdesc" id="exampleTextArea" rows="3" placeholder="Enter short Testiomial"></textarea>
             </div>
           
             <div class="form-group">
