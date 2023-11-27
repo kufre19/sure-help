@@ -52,6 +52,8 @@ Route::group(['middleware' => "auth", 'prefix' => "dashboard"], function () {
     // TESTIMONIALS
     Route::get("/testimonials/all", [AdminController::class, "testimonial_page"])->name("testimonial.index");
     Route::get("/testimonials/delete/{id}", [AdminController::class, "delete_testimonial"])->name("testimonial.delete");
+    Route::post("/testimonials/create/", [AdminController::class, "createNewTestimonial"])->name("testimonial.create");
+
 
 
 

@@ -18,8 +18,9 @@
 
         <!-- Page Heading -->
         <h1 class="h3 mb-4 text-gray-800">User Testimonials</h1>
-        {{-- <p><a href="{{ url('dashboard/shop/item/add') }}" class="btn btn-primary">Add Item</a></p> --}}
-
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createRequestModal">
+            + New Testimonial
+        </button>
     </div>
     <!-- /.container-fluid -->
 
@@ -58,6 +59,8 @@
             <p> {{ $testimonials->links() }}</p>
         </div>
      
+        @include('modals.create-new-testimonials')
+
     </div>
 @endsection
 
