@@ -24,7 +24,7 @@
     </div>
     <!-- /.container-fluid -->
 
-    <div class="container-fluid">
+    <div class="container-fluid mt-2">
         @include('layouts.notifications.dismisable')
         <div class="row">
 

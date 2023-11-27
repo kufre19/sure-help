@@ -35,7 +35,7 @@ trait TestimonialFunction {
         $testimonial_model = new UserMainTestimonial();
         $testimonial_model->written_by = $request->input("written_by");
         $testimonial_model->shortdesc = $request->input("shortdesc");
-        $testimonial_model->imageurl = $imagePath;
+        $testimonial_model->imageurl = $imagePath ?? "";
         $testimonial_model->save();
 
         return redirect()->back()->with("success","Testimonial added");
