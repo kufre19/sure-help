@@ -22,6 +22,7 @@ trait TestimonialFunction {
     public function createNewTestimonial(Request $request)
     {
 
+        dd($request->all());
          // Handle file upload
          if ($request->hasFile('imageurl')) {
             dd("ok");
