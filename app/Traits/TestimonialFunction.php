@@ -27,9 +27,9 @@ trait TestimonialFunction {
             $imageName = time() . '_' . $image->getClientOriginalName();
 
             // Target directory outside of Laravel app directory
-            $targetDir = $_SERVER['DOCUMENT_ROOT'] . '/development/main/testimonies/';
+            $targetDir =public_path("uploads/images/testimonies");
             $image->move($targetDir, $imageName);
-            $imagePath = "https://development.surehelp.org/main/testimonies/" . $imageName;
+            $imagePath = "https://backoffice.surehelp.org/uploads/images/testimonies"."/" . $imageName;
 
         
         $testimonial_model = new UserMainTestimonial();
