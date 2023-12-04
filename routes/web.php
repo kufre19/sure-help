@@ -19,6 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get("info", function()
+{
+    return phpinfo();
+});
+
 Route::get('/upload', function () {
     return view('upload');
 });
