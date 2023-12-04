@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,15 @@ use App\Http\Controllers\Admin\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/upload', function () {
+    return view('upload');
+});
+
+Route::post('/upload', function (Request $request) {
+    $request->file('image')->store('upload/images', 'public');
+    return back()->with('success', 'File has been uploaded.');
 });
 
 Route::group(['middleware' => "auth", 'prefix' => "dashboard"], function () {
