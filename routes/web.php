@@ -24,7 +24,7 @@ Route::get('/upload', function () {
 });
 
 Route::post('/upload', function (Request $request) {
-    $request->file('image')->store('uploads', 'public');
+    $request->file('image')->move('uploads', 'public');
     return back()->with('success', 'File has been uploaded.');
 });
 
