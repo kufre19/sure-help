@@ -32,7 +32,8 @@ trait TestimonialFunction {
         try {
             if ($request->hasFile('imageurl')) {
                 $image = $request->file('imageurl');
-                $imageName = time() . '_' . $image->getClientOriginalName();
+                $imageExtension = $image->getClientOriginalExtension(); // Get the original file extension
+                $imageName = time() . '.' . $imageExtension; // Combine time with the file extension
     
                 // Save to the 'public' disk (or any configured disk)
                 $imagePath = $image->storeAs('uploads/images/testimonies', $imageName, 'public');
