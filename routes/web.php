@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +24,12 @@ Route::get('/', function () {
 Route::get("info", function()
 {
     return phpinfo();
+});
+
+
+Route::get('/create-storage-link', function () {
+    Artisan::call('storage:link');
+    return 'The symbolic link has been created.';
 });
 
 Route::get('/upload', function () {
