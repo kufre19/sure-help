@@ -3,6 +3,8 @@ namespace App\Traits;
 
 use App\Models\UserMainTestimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 trait TestimonialFunction {
 
