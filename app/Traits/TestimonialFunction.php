@@ -34,18 +34,24 @@ trait TestimonialFunction {
                 $image = $request->file('imageurl');
                 $imageExtension = $image->getClientOriginalExtension(); // Get the original file extension
                 $imageName = time() . '.' . $imageExtension; // Combine time with the file extension
-    
-                // Save to the 'public' disk (or any configured disk)
-                $imagePath = $image->storeAs('uploads/images/testimonies', $imageName, 'public');
-    
+            
+                // Define target directory inside the public directory
+                $targetDir = public_path('uploads/images/testimonies');
+                
+                // Move the file to the target directory
+                $image->move($targetDir, $imageName);
+            
+                // Create the URL for the image
+                $imagePath = asset('uploads/images/testimonies/' . $imageName);
+            
                 $testimonial_model = new UserMainTestimonial();
                 $testimonial_model->written_by = $request->input('written_by');
                 $testimonial_model->shortdesc = $request->input('shortdesc');
-                $testimonial_model->imageurl = Storage::disk('public')->url($imagePath);
+                $testimonial_model->imageurl = $imagePath;
                 $testimonial_model->fulldesc_url = '';
-    
+            
                 $testimonial_model->save();
-    
+            
                 return redirect()->back()->with('success', 'Testimonial added');
             }
         } catch (\Exception $e) {
