@@ -60,7 +60,7 @@ trait Partnership {
     public function view_partner_page($id)
     {
         $partner = UserSponsorApp::findOrFail($id);
-        $helpsOffered = HelpOffered::where('uuid', $partner->uuid)->get(); // Retrieve all helps offered by this partner
+        $helpsOffered = HelpOffered::where('help_from', $partner->uuid)->get(); // Retrieve all helps offered by this partner
 
         return response()->json([
             'name' => $partner->fullname,
