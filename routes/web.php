@@ -57,7 +57,7 @@ Route::group(['middleware' => "auth", 'prefix' => "dashboard"], function () {
 
     // partnership
     Route::get("/partners/broadcast-message", [AdminController::class, "broadcastmessage_page"]);
-    Route::post("/partners/broadcast-message", [AdminController::class, "broadcastmessage_send"]);
+    Route::post("/partners/broadcast-message", [AdminController::class, "sendBroadcast"]);
     Route::get("/partners/list-partners", [AdminController::class, "list_partners_page"]);
     Route::get("/partners/view/{id}", [AdminController::class, "view_partner_page"]);
 

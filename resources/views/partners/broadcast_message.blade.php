@@ -29,24 +29,32 @@
                         </div>
                         <form action="{{ url('/dashboard/partners/broadcast-message') }}" method="POST" class="user">
                             @csrf
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <textarea name="message" class="form-control " id="exampleInputPassword" rows="10" required>
-
-                                    </textarea>
-                                    
-                                </div>
-
-
+                            <div class="form-group">
+                                <label for="broadcastTitle">Broadcast Title</label>
+                                <input type="text" name="title" class="form-control" id="broadcastTitle" required>
                             </div>
-                           
-
+                            <div class="form-group">
+                                <label for="broadcastType">Broadcast Type</label>
+                                <select name="broadcast_type" class="form-control" id="broadcastType" required>
+                                    <option value="Notice">Notice</option>
+                                    <option value="Alert">Alert</option>
+                                    <option value="Emergency">Emergency</option>
+                                    <option value="Broadcast">Broadcast</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="broadcastBy">Broadcast By</label>
+                                <input type="text" name="broadcast_by" class="form-control" id="broadcastBy" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="broadcastContent">Broadcast Content</label>
+                                <textarea name="message" class="form-control" id="broadcastContent" rows="10" required></textarea>
+                            </div>
                             <button type="submit" class="btn btn-primary btn-user btn-block">
                                 Broadcast Message
                             </button>
-                            <hr>
-
                         </form>
+                        
                         <hr>
 
                     </div>
