@@ -26,15 +26,16 @@
         </thead>
         <tbody>
             @foreach ($partners as $partner)
-            <tr>
-                <td>{{ $partner->fullname }}</td>
-                <td>
-                    <!-- Replace '#viewModal' with the ID of your modal for viewing partner details -->
-                    <button class="btn btn-primary view-user" data-user-id="{{ $partner->id }}" data-toggle="modal" data-target="#viewModal">View</button>
-                </td>
-            </tr>
+                <tr>
+                    <td>{{ $partner->fullname }}</td>
+                    <td>
+                        <!-- Replace '#viewModal' with the ID of your modal for viewing partner details -->
+                        <button class="btn btn-primary view-user" data-user-id="{{ $partner->id }}" data-toggle="modal"
+                            data-target="#viewModal">View</button>
+                    </td>
+                </tr>
             @endforeach
-            
+
         </tbody>
     </table>
 
@@ -61,9 +62,9 @@
                         </div>
                         <!-- Help Offered List Column -->
                         <div class="col-md-6">
-                            <div class="help-list" style="max-height: 400px; overflow-y: auto;">
-                                <!-- Dynamically loaded list of help titles -->
-                            </div>
+                            <ul class="help-list" style="max-height: 400px; overflow-y: auto;">
+                                <!-- List items will be added here -->
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -92,11 +93,10 @@
                         // Populate the user details
                         $('#partnerName').text(response.name);
                         $('#partnerImage').attr('src', response.image);
-                        console.log(response.help_offered);
 
                         // Assuming 'response.help_offered' contains an array of help objects
                         response.help_offered.forEach(function(help) {
-                            var listItem = $('<div class="help-item"></div>');
+                            var listItem = $('<li class="help-item"></li>');
                             listItem.text(help.help_title);
                             // Add other help details if necessary
                             $('#userModal .help-list').append(listItem);
