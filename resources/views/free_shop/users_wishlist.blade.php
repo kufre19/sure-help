@@ -36,6 +36,7 @@
                     <!-- Wishlist details will be loaded here -->
                 </div>
                 <div class="modal-footer">
+                    <textarea id="adminComment" class="form-control mb-3" placeholder="Admin comment"></textarea>
                     <button type="button" class="btn btn-success btn-approve" data-wishlist-id="">Approve</button>
                     <button type="button" class="btn btn-danger btn-reject" data-wishlist-id="">Reject</button>
                 </div>
@@ -90,6 +91,8 @@
                 $('.btn-approve, .btn-reject').click(function() {
                     var wishlistId = $(this).data('wishlist-id');
                     var action = $(this).hasClass('btn-approve') ? 'approve' : 'reject';
+                    var adminComment = $('#adminComment').val();
+
                     Swal.fire({
                         title: 'Are you sure?',
                         text: 'Do you want to ' + action + ' this wishlist item?',
@@ -106,6 +109,7 @@
                                 type: 'POST',
                                 data: {
                                     wishlistId: wishlistId,
+                                    adminComment: adminComment,
                                     _token: "{{ csrf_token() }}"
                                 },
                                 success: function(response) {
