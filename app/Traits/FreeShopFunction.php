@@ -21,7 +21,11 @@ trait FreeShopFunction
 
     public function freeshop_wishlist_page()
     {
-        return view("free_shop.users_wishlist");
+        $wishlists = Wishlist::with(['user', 'item']) // Assuming 'user' and 'item' are the relationship methods in Wishlist model
+                       ->where('wish_status', 'pending') // Or any other condition you want to apply
+                       ->get();
+    
+        return view("free_shop.users_wishlist", compact('wishlists'));
     }
 
 

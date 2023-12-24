@@ -62,6 +62,7 @@
                         </div>
                         <!-- Help Offered List Column -->
                         <div class="col-md-6">
+                            <h4>List of Help Offered</h4>
                             <ul class="help-list" style="max-height: 400px; overflow-y: auto;">
                                 <!-- List items will be added here -->
                             </ul>

@@ -8,6 +8,8 @@
 <!-- Custom scripts for all pages-->
 <script src="{{ asset('js/custom/js/sb-admin-2.min.js') }}"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 <script type="text/javascript">
     function googleTranslateElementInit() {
