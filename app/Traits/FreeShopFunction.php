@@ -48,8 +48,12 @@ trait FreeShopFunction
     public function approveWishlist(Request $request)
     {
         $wishlistId = $request->input('wishlistId');
+        $adminComment = $request->input('adminComment');
+
         $wishlist = Wishlist::find($wishlistId);
         $wishlist->wish_status = 'approved';
+        $wishlist->admin_comment = $adminComment;
+
         $wishlist->save();
 
         return response()->json(['message' => 'Wishlist approved successfully']);
@@ -58,8 +62,11 @@ trait FreeShopFunction
     public function rejectWishlist(Request $request)
     {
         $wishlistId = $request->input('wishlistId');
+        $adminComment = $request->input('adminComment');
+
         $wishlist = Wishlist::find($wishlistId);
         $wishlist->wish_status = 'rejected';
+        $wishlist->admin_comment = $adminComment;
         $wishlist->save();
 
         return response()->json(['message' => 'Wishlist rejected successfully']);
