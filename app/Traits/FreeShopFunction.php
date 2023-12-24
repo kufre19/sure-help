@@ -31,6 +31,20 @@ trait FreeShopFunction
         return view("free_shop.users_wishlist", compact('wishlists'));
     }
 
+    public function fetchWishlistDetails($wishlistId)
+    {
+        $wishlist = Wishlist::with(['user', 'item'])->find($wishlistId);
+        if ($wishlist) {
+            return response()->json([
+                'user' => $wishlist->user, // Assuming a 'user' relationship is defined
+                'item' => $wishlist->item  // Assuming an 'item' relationship is defined
+            ]);
+        } else {
+            return response()->json(['error' => 'Wishlist not found'], 404);
+        }
+    }
+
+
     public function approveWishlist(Request $request)
     {
         $wishlistId = $request->input('wishlistId');

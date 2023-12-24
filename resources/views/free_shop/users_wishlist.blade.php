@@ -53,7 +53,7 @@
             $('.details-btn').click(function() {
                 var wishlistId = $(this).data('wishlist-id');
                 $.ajax({
-                    url: '/path-to-fetch-wishlist-details/' +
+                    url: '/dashboard/wishlist/details/' +
                         wishlistId, // Update this with your actual URL
                     type: 'GET',
                     success: function(response) {
