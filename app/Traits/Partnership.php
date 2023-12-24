@@ -4,6 +4,10 @@ namespace App\Traits;
 
 use Illuminate\Http\Request;
 use App\Models\SponsorBroadcast;
+use App\Models\UserSponsorApp;
+use App\Models\HelpOffered;
+
+
 
 trait Partnership {
 
@@ -42,21 +46,27 @@ trait Partnership {
     }
     
 
-    public function broadcastmessage_send(Request $request)
-    {
-        session()->flash('success', 'Message Sent!');
-        return redirect()->back();
-    } 
+  
 
     public function list_partners_page()
     {
-        // $partners = 
-        return view("partners.list_partners");
+        // Retrieve all partners, consider using pagination
+        $partners = UserSponsorApp::paginate(10); // Adjust the number per page as needed
+
+        // Pass the partners to the view
+        return view('partners.list_partners', compact('partners'));
     }
 
     public function view_partner_page($id)
     {
-        return response()->json(['name'=>"Partner name","image"=>"image url","other_details"=>"other details"]);
+        $partner = UserSponsorApp::findOrFail($id);
+        $helpsOffered = HelpOffered::where('uuid', $partner->uuid)->get(); // Retrieve all helps offered by this partner
 
+        return response()->json([
+            'name' => $partner->fullname,
+            'image' => $partner->profile_photo,
+            'other_details' => 'Other details here...', // Add more details as required
+            'help_offered' => $helpsOffered // This will be a collection of HelpOffered objects
+        ]);
     }
 }

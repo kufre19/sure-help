@@ -25,55 +25,50 @@
             </tr>
         </thead>
         <tbody>
-            {{-- @foreach ($partners as $user)
-                <tr>
-
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->role }}</td>
-                    <td>
-                        <button class="view-user" data-user-id="{{ $user->id }}">View</button>
-                        <a href="{{ url('dashboard/account/edit/' . $user->id) }}" class="btn btn-primary">View</a>
-                        <form action="{{ url('dashboard/account/delete/'.$user->id) }}" method="POST" style="display: inline;">
-                            @csrf
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach --}}
+            @foreach ($partners as $partner)
             <tr>
-
-                <td>Partner name</td>
-        
+                <td>{{ $partner->fullname }}</td>
                 <td>
-                    <button class="view-user btn btn-primary" data-user-id="1">View</button>
-                    {{-- <a href="{{ url('dashboard/account/edit/' . $user->id) }}" class="btn btn-primary">View</a> --}}
-                    {{-- <form action="{{ url('dashboard/account/delete/'.$user->id) }}" method="POST" style="display: inline;">
-                        @csrf
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form> --}}
+                    <!-- Replace '#viewModal' with the ID of your modal for viewing partner details -->
+                    <button class="btn btn-primary view-user" data-user-id="{{ $partner->id }}" data-toggle="modal" data-target="#viewModal">View</button>
                 </td>
             </tr>
+            @endforeach
+            
         </tbody>
     </table>
 
-    {{-- {{ $users->links() }} --}}
+    {{ $partners->links() }}
 
     <!-- Define the modal that will display user details -->
-    <div class="modal fade" id="user-modal" tabindex="-1" aria-labelledby="user-modal-label" aria-hidden="true">
-        <div class="modal-dialog">
+    <!-- User Details and Help Offered Modal -->
+    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="user-modal-label">User Details</h5>
+                    <h5 class="modal-title" id="userModalLabel">Partner Details</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                      </button>
+                    </button>
                 </div>
                 <div class="modal-body">
-                    <div id="user-details">
-                        <h4 id="partner-name"></h4>
-                        <p id="partner-order-details"></p>
-                        <img id="partner-image" alt="Profile Picture">
+                    <div class="row">
+                        <!-- Partner Details Column -->
+                        <div class="col-md-6">
+                            <img id="partnerImage" src="" alt="Profile Picture" class="img-fluid">
+                            <h4 id="partnerName"></h4>
+                            <!-- Other partner details here -->
+                        </div>
+                        <!-- Help Offered List Column -->
+                        <div class="col-md-6">
+                            <div class="help-list" style="max-height: 400px; overflow-y: auto;">
+                                <!-- Dynamically loaded list of help titles -->
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -87,23 +82,31 @@
             // When a "View" button is clicked, fetch the user details and display them in a modal
             $('.view-user').click(function() {
                 var userId = $(this).data('user-id');
+                // Clear previous data
+                $('#userModal .help-list').empty();
+
                 $.ajax({
-                    url: "{{url('dashboard/partners/view/')}}" +"/"+ userId,
+                    url: "{{ url('dashboard/partners/view/') }}" + "/" + userId,
                     method: 'GET',
                     success: function(response) {
-                        // / <td>{ $user->role }}</td>/ Populate the user details in the modal
-                        // $('#user-details').html(response.html);
-                        $('#partner-name').html(response.name);
-                        $('#partner-order-details').html(response.other_details);
-                        $('#partner-image').attr('src',response.image);
-                        
+                        // Populate the user details
+                        $('#partnerName').text(response.name);
+                        $('#partnerImage').attr('src', response.image);
 
+                        // Assuming 'response.help_offered' contains an array of help objects
+                        response.help_offered.forEach(function(help) {
+                            var listItem = $('<div class="help-item"></div>');
+                            listItem.text(help.help_title);
+                            // Add other help details if necessary
+                            $('#userModal .help-list').append(listItem);
+                        });
 
                         // Display the modal
-                        $('#user-modal').modal('show');
+                        $('#userModal').modal('show');
                     }
                 });
             });
+
         });
     </script>
 @endsection
