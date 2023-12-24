@@ -3,6 +3,8 @@
 namespace App\Traits;
 
 use App\Models\FreeShop;
+use App\Models\WishList;
+
 use App\Models\User;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Http\Request;
