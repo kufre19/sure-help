@@ -66,12 +66,13 @@
 
                         // Populate modal with user and item details
                         var modalContent = '<h5>User Details:</h5>' +
-                            '<p>Name: ' + userDetails.name + '</p>' +
+                            
+                            '<p>Name: ' + userDetails.fullname + '</p>' +
                             '<p>Email: ' + userDetails.email + '</p>' +
                             // ... other user details
                             '<h5>Item Details:</h5>' +
-                            '<p>Name: ' + itemDetails.name + '</p>' +
-                            '<p>Description: ' + itemDetails.description + '</p>';
+                            '<p>Name: ' + itemDetails.item_name + '</p>' +
+                            '<p>Description: ' + itemDetails.item_category + '</p>';
                         // ... other item details
 
                         $('#detailsModal .modal-body').html(modalContent);

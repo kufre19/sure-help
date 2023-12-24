@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\FreeShop;
-use App\Models\UserMainApp;
+use App\Models\UsersMainApp;
 
 
 class WishList extends Model
@@ -16,7 +16,7 @@ class WishList extends Model
 
     public function user():BelongsTo
     {
-        return $this->belongsTo(UserMainApp::class, 'user_id');
+        return $this->belongsTo(UsersMainApp::class, 'user_id');
     }
 
     public function item():BelongsTo
