@@ -30,6 +30,26 @@ trait FreeShopFunction
         return view("free_shop.users_wishlist", compact('wishlists'));
     }
 
+    public function approveWishlist(Request $request)
+    {
+        $wishlistId = $request->input('wishlistId');
+        $wishlist = Wishlist::find($wishlistId);
+        $wishlist->wish_status = 'approved';
+        $wishlist->save();
+
+        return response()->json(['message' => 'Wishlist approved successfully']);
+    }
+
+    public function rejectWishlist(Request $request)
+    {
+        $wishlistId = $request->input('wishlistId');
+        $wishlist = Wishlist::find($wishlistId);
+        $wishlist->wish_status = 'rejected';
+        $wishlist->save();
+
+        return response()->json(['message' => 'Wishlist rejected successfully']);
+    }
+
 
     public function add_item_page()
     {
