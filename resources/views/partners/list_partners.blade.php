@@ -92,6 +92,7 @@
                         // Populate the user details
                         $('#partnerName').text(response.name);
                         $('#partnerImage').attr('src', response.image);
+                        console.log(response.help_offered);
 
                         // Assuming 'response.help_offered' contains an array of help objects
                         response.help_offered.forEach(function(help) {

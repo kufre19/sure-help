@@ -21,7 +21,7 @@ trait FreeShopFunction
 
     public function freeshop_wishlist_page()
     {
-        return view("free_shop.");
+        return view("free_shop.users_wishlist");
     }
 
 
