@@ -16,7 +16,7 @@ class WishList extends Model
 
     public function user():BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(UserMainApp::class, 'user_id');
     }
 
     public function item():BelongsTo

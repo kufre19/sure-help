@@ -33,9 +33,7 @@ trait FreeShopFunction
 
     public function fetchWishlistDetails($wishlistId)
     {
-        info($wishlistId);
         $wishlist = Wishlist::with(['user', 'item'])->find($wishlistId);
-        info($wishlist);
         if ($wishlist) {
             return response()->json([
                 'user' => $wishlist->user, // Assuming a 'user' relationship is defined
